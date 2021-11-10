@@ -50,7 +50,7 @@ public class Hilo extends Thread{
             // Capturo el flujo de salida y lo asocio al dato de salida
              // ESTE ES EL PROTOCOLO
              
-             datosSalida.close();
+            datosSalida.close();
             datosEntrada.close();
             host.close();
             
