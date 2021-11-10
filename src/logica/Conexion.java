@@ -12,6 +12,7 @@ public class Conexion {
     private Socket cliente;
     private int puerto;
     private boolean conectarActivo;
+  
     
     public Conexion (){
         puerto = 5000;
