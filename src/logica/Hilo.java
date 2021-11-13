@@ -25,7 +25,7 @@ public class Hilo extends Thread{
     
     public Cliente getCliente() {
         if(cliente == null){
-            cliente = new Cliente(0,0,0,0,0);
+            cliente = new Cliente();
         }
         return cliente;
     }
