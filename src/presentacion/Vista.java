@@ -5,6 +5,9 @@
  */
 package presentacion;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import presentacion.Controlador;
 import presentacion.Modelo;
 
@@ -17,13 +20,28 @@ public class Vista extends javax.swing.JFrame {
 
     private Controlador control;
     private final Modelo modelo;
+
+    public JComboBox<String> getListClients() {
+        return listClients;
+    }
     
     public Vista(Modelo aThis) {
         modelo = aThis;
         initComponents();
+        capturaEventos();
     }
     
-  
+    public Controlador getControl() {
+        if(control == null){
+            control = new Controlador(this);
+        }
+        return control;
+    }
+    
+    private void capturaEventos() {
+        buttonLoad.addActionListener(getControl());
+        listClients.addFocusListener(getControl());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -377,4 +395,38 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JComboBox<String> listClients;
     // End of variables declaration//GEN-END:variables
+
+    public Modelo getModelo() {
+        return modelo;
+    }
+
+    public JButton getButtonLoad() {
+        return buttonLoad;
+    }
+
+    public JLabel getBrokenGG1() {
+        return brokenGG1;
+    }
+
+    public JLabel getBrokenGG2() {
+        return brokenGG2;
+    }
+
+    public JLabel getBrokenRG1() {
+        return brokenRG1;
+    }
+
+    public JLabel getBrokenRG2() {
+        return brokenRG2;
+    }
+
+    public JLabel getBrokenYG1() {
+        return brokenYG1;
+    }
+
+    public JLabel getBrokenYG2() {
+        return brokenYG2;
+    }
+    
+    
 }

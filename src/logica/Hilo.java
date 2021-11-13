@@ -7,8 +7,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 
 public class Hilo extends Thread{
@@ -19,6 +21,18 @@ public class Hilo extends Thread{
     public static int NUM_CLIENTES = 0;
     private int clienteNo;
     protected String mensajeRecibido;
+    private Cliente cliente;
+    
+    public Cliente getCliente() {
+        if(cliente == null){
+            cliente = new Cliente(0,0,0,0,0);
+        }
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
     
     public Hilo(Socket c) {
         host = c;
@@ -29,6 +43,7 @@ public class Hilo extends Thread{
     @Override
     public void run() {
         String mensaje = "Hola "+ clienteNo + "!";
+        getCliente().setId(clienteNo);
         
         try {
             
