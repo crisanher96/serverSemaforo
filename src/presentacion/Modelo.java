@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import logica.Conexion;
+import logica.Hilo;
 
 public class Modelo {
     
@@ -21,11 +22,10 @@ public class Modelo {
     }
     
     public void setListaClientes(){
-        listaCombo.removeAllElements();
-        List<String> listaClientes = getMiSistema().getListaClientes();
-        for(String item:listaClientes ){
+        listaCombo. removeAllElements();
+        getMiSistema().getListaClientes().forEach(item -> {
             listaCombo.addElement(item);
-        }
+        });
     }
     
      public void iniciar() {
@@ -41,12 +41,19 @@ public class Modelo {
      
      public void ActualizarVentana(Object o){
          
-         getVentanaPrincipal().getBrokenGG1().setText("0");
-         getVentanaPrincipal().getBrokenGG2().setText("0");
-         getVentanaPrincipal().getBrokenRG1().setText("0");
-         getVentanaPrincipal().getBrokenRG2().setText("0");
-         getVentanaPrincipal().getBrokenYG1().setText("0");
-         getVentanaPrincipal().getBrokenYG2().setText("0");
+         for (Thread item : getMiSistema().getListaTareas()){
+              Hilo hilo = (Hilo) item;
+              
+              if(hilo.getCliente().getId()== Integer.valueOf(o.toString()) )
+              {
+                getVentanaPrincipal().getBrokenGG1().setText(String.valueOf(hilo.getCliente().getCantVerde1()));
+                getVentanaPrincipal().getBrokenGG2().setText(String.valueOf(hilo.getCliente().getCantVerde2()));
+                getVentanaPrincipal().getBrokenRG1().setText(String.valueOf(hilo.getCliente().getCantRojo1()));
+                getVentanaPrincipal().getBrokenRG2().setText(String.valueOf(hilo.getCliente().getCantRojo2()));
+                getVentanaPrincipal().getBrokenYG1().setText(String.valueOf(hilo.getCliente().getCantAmarillo1()));
+                getVentanaPrincipal().getBrokenYG2().setText(String.valueOf(hilo.getCliente().getCantAmarillo2()));
+              }
+         }
      }
     
     public Vista getVentanaPrincipal() {

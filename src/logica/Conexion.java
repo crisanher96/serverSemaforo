@@ -31,11 +31,12 @@ public class Conexion extends Thread {
         if(listaClientes == null){
             listaClientes = new ArrayList<String>();
         }
-        
+        listaClientes.clear();
         for(Thread item : getListaTareas()){
 //            listaClientes.add(item.getName());
             Hilo hilo = (Hilo)item;
-            listaClientes.add( String.valueOf(hilo.getCliente().getId()));
+            if(hilo.isAlive())
+                listaClientes.add( String.valueOf(hilo.getCliente().getId()));
         }
         
         return listaClientes;
@@ -65,7 +66,8 @@ public class Conexion extends Thread {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-  
+   
+    
     
 //    public void conectar() throws IOException {
 //                       
