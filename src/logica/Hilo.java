@@ -1,6 +1,8 @@
 
 package logica;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -51,14 +53,24 @@ public class Hilo extends Thread{
             datosEntrada = new BufferedReader(new InputStreamReader(host.getInputStream()));
             while((mensajeRecibido = datosEntrada.readLine()) != null  ) //Mientras haya mensajes desde el cliente
             {
-                
-                //Se muestra por pantalla el mensaje recibido
+                     
+                    
+                    try {
+                        Gson gson = new Gson(); 
+                        ClienteTemp[] clientesTemp = gson.fromJson(mensajeRecibido,ClienteTemp[].class); 
+                        System.out.println("-------------------------------------------");
+                        System.out.println(clientesTemp[0].getClient_id());
+                    } catch(JsonSyntaxException e){
+                        System.out.println("Json Con Estructura Erronea");
+                    }
+                    datosSalida = new DataOutputStream(host.getOutputStream());
+                    datosSalida.write(mensaje.getBytes());
+                /*//Se muestra por pantalla el mensaje recibido
                 System.out.println("Mensaje Recibido: "+mensajeRecibido);
                 datosSalida = new DataOutputStream(host.getOutputStream());
-                datosSalida.write(mensaje.getBytes());
+                datosSalida.write(mensaje.getBytes());*/
                 if(mensajeRecibido.equals("Salir")){
-                    System.out.println("Entre para salir");
-                    
+                    System.out.println("Cliente Desconectado");
                     break;
                 }
             }
@@ -68,16 +80,9 @@ public class Hilo extends Thread{
             datosSalida.close();
             datosEntrada.close();
             host.close();
-            
-            
-            
-            
-            
-            // Se cierra todo
-            //datosSalida.close();
-            //host.close();
-            
-        } catch (IOException ex) {            
+                      
+        } catch (IOException ex) {
+            System.out.println("Mensaje Incorrecto");
         }        
         
     }

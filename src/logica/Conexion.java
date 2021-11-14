@@ -64,6 +64,7 @@ public class Conexion extends Thread {
             }
         } catch (IOException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error Server");
         }
     }
    

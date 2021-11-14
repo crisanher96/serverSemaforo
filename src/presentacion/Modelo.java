@@ -5,20 +5,31 @@ import java.io.IOException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import logica.Conexion;
+import logica.LogicaPrincipal;
 import logica.Hilo;
 
 public class Modelo {
     
     DefaultComboBoxModel<String> listaCombo = new DefaultComboBoxModel<>();
     private Vista ventanaPrincipal;
+    private LogicaPrincipal sistema;
     
     private Conexion conexion;
-
+    
+    // Conexion a logica
     public Conexion getMiSistema() {
         if(conexion == null){
             conexion = new Conexion();
         }
         return conexion;
+    }
+    
+    // Conexion a logica
+    protected LogicaPrincipal getSistema() {
+        if(sistema == null){
+            sistema = new LogicaPrincipal();
+        }
+        return sistema;
     }
     
     public void setListaClientes(){
