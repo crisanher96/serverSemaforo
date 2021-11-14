@@ -65,6 +65,10 @@ public class Hilo extends Thread{
                     }
                     datosSalida = new DataOutputStream(host.getOutputStream());
                     datosSalida.write(mensaje.getBytes());
+                    
+                    System.out.println(cliente.isEstRojo1());
+                    
+                    
                 /*//Se muestra por pantalla el mensaje recibido
                 System.out.println("Mensaje Recibido: "+mensajeRecibido);
                 datosSalida = new DataOutputStream(host.getOutputStream());

@@ -8,6 +8,7 @@ package presentacion;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import presentacion.Controlador;
 import presentacion.Modelo;
 
@@ -426,6 +427,38 @@ public class Vista extends javax.swing.JFrame {
 
     public JLabel getBrokenYG2() {
         return brokenYG2;
+    }
+
+    public JLabel getCantG1() {
+        return cantG1;
+    }
+
+    public JLabel getCantG2() {
+        return cantG2;
+    }
+
+    public JRadioButton getCheckGG1() {
+        return checkGG1;
+    }
+
+    public JRadioButton getCheckGG2() {
+        return checkGG2;
+    }
+
+    public JRadioButton getCheckRG1() {
+        return checkRG1;
+    }
+
+    public JRadioButton getCheckRG2() {
+        return checkRG2;
+    }
+
+    public JRadioButton getCheckYG1() {
+        return checkYG1;
+    }
+
+    public JRadioButton getCheckYG2() {
+        return checkYG2;
     }
     
     
