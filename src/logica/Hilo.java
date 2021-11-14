@@ -25,6 +25,7 @@ public class Hilo extends Thread{
     protected String mensajeRecibido;
     private Cliente cliente;
     
+    
     public Cliente getCliente() {
         if(cliente == null){
             cliente = new Cliente();
@@ -35,7 +36,7 @@ public class Hilo extends Thread{
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
+
     public Hilo(Socket c) {
         host = c;
         NUM_CLIENTES++;
@@ -53,17 +54,21 @@ public class Hilo extends Thread{
             datosEntrada = new BufferedReader(new InputStreamReader(host.getInputStream()));
             while((mensajeRecibido = datosEntrada.readLine()) != null && salir == 0 ) //Mientras haya mensajes desde el cliente
             {
-                     
-                    
                     try {
                         Gson gson = new Gson();
                         Json json = gson.fromJson(mensajeRecibido, Json.class);
                         
                         switch (json.getPeticion()) {
                             case "connect": 
+                                mensaje = "Cliente Conectado";
+                                datosSalida = new DataOutputStream(host.getOutputStream());
+                                datosSalida.write(mensaje.getBytes());
                             break;
                             case "disconnect":  
                                 System.out.println("Cliente Desconectado");
+                                mensaje = "Cliente Desconectado";
+                                datosSalida = new DataOutputStream(host.getOutputStream());
+                                datosSalida.write(mensaje.getBytes());
                                 salir=1;
                                 datosSalida.close();
                                 datosEntrada.close();
@@ -75,7 +80,6 @@ public class Hilo extends Thread{
                                 System.out.println("-------------------------------------------");
                                 System.out.println(clientesTemp[0].getCant_semaforos());
                                 
-                                
                                 getCliente().setId(clientesTemp[0].getClient_id());
                                 getCliente().setCantSemaforos1(clientesTemp[0].getCant_semaforos());
                                 getCliente().setCantSemaforos2(clientesTemp[1].getCant_semaforos());
@@ -86,31 +90,29 @@ public class Hilo extends Thread{
                                 getCliente().setCantVerde1(clientesTemp[0].getLuz_green_broken());
                                 getCliente().setCantVerde2(clientesTemp[1].getLuz_green_broken());
                                 
-                                
+                                ResponseClient[] respuestaCliente = {
+                                new ResponseClient(1, getCliente().isEstRojo1(), getCliente().isEstAmarillo1(), getCliente().isEstVerde1()),
+                                new ResponseClient(2, getCliente().isEstRojo1(), getCliente().isEstAmarillo2(), getCliente().isEstVerde2())
+                            };
+                                 
+
+                                mensaje = gson.toJson(respuestaCliente);
+                                datosSalida = new DataOutputStream(host.getOutputStream());
+                                datosSalida.write(mensaje.getBytes());
                             break;
                             default: 
                                 System.out.println("Opcion No Valida");
+                                mensaje = "Opcion No Valida";
+                                datosSalida = new DataOutputStream(host.getOutputStream());
+                                datosSalida.write(mensaje.getBytes());
                             break;
                         }
                     } catch(JsonSyntaxException e){
                         System.out.println("Json Con Estructura Erronea");
                     }
-                    datosSalida = new DataOutputStream(host.getOutputStream());
-                    datosSalida.write(mensaje.getBytes());
                     
-                    System.out.println(cliente.isEstRojo1());
-                    
-                    
-                /*//Se muestra por pantalla el mensaje recibido
-                System.out.println("Mensaje Recibido: "+mensajeRecibido);
-                datosSalida = new DataOutputStream(host.getOutputStream());
-                datosSalida.write(mensaje.getBytes());*/
-           
+                   
             }
-            // Capturo el flujo de salida y lo asocio al dato de salida
-             // ESTE ES EL PROTOCOLO
-             
-         
         } catch (IOException ex) {
             System.out.println("Mensaje Incorrecto");
         }        
