@@ -21,7 +21,7 @@ public class Hilo extends Thread{
     private DataOutputStream datosSalida;
     private BufferedReader datosEntrada;
     public static int NUM_CLIENTES = 0;
-    private int clienteNo;
+    private int clienteNo, salir=0;
     protected String mensajeRecibido;
     private Cliente cliente;
     
@@ -51,15 +51,34 @@ public class Hilo extends Thread{
             
             //SE LEE LA ENTRADA
             datosEntrada = new BufferedReader(new InputStreamReader(host.getInputStream()));
-            while((mensajeRecibido = datosEntrada.readLine()) != null  ) //Mientras haya mensajes desde el cliente
+            while((mensajeRecibido = datosEntrada.readLine()) != null && salir == 0 ) //Mientras haya mensajes desde el cliente
             {
                      
                     
                     try {
-                        Gson gson = new Gson(); 
-                        ClienteTemp[] clientesTemp = gson.fromJson(mensajeRecibido,ClienteTemp[].class); 
-                        System.out.println("-------------------------------------------");
-                        System.out.println(clientesTemp[0].getClient_id());
+                        Gson gson = new Gson();
+                        Json json = gson.fromJson(mensajeRecibido, Json.class);
+                        
+                        switch (json.getPeticion()) {
+                            case "connect": 
+                            break;
+                            case "disconnect":  
+                                System.out.println("Cliente Desconectado");
+                                salir=1;
+                                datosSalida.close();
+                                datosEntrada.close();
+                                host.close();
+                            break;
+                            case "update":
+                                Gson gsonF = new Gson();
+                                ClienteTemp[] clientesTemp = gsonF.fromJson(json.getInfo(),ClienteTemp[].class);
+                                System.out.println("-------------------------------------------");
+                                System.out.println(clientesTemp[0].getCant_semaforos());
+                            break;
+                            default: 
+                                System.out.println("Opcion No Valida");
+                            break;
+                        }
                     } catch(JsonSyntaxException e){
                         System.out.println("Json Con Estructura Erronea");
                     }
@@ -73,18 +92,12 @@ public class Hilo extends Thread{
                 System.out.println("Mensaje Recibido: "+mensajeRecibido);
                 datosSalida = new DataOutputStream(host.getOutputStream());
                 datosSalida.write(mensaje.getBytes());*/
-                if(mensajeRecibido.equals("Salir")){
-                    System.out.println("Cliente Desconectado");
-                    break;
-                }
+           
             }
             // Capturo el flujo de salida y lo asocio al dato de salida
              // ESTE ES EL PROTOCOLO
              
-            datosSalida.close();
-            datosEntrada.close();
-            host.close();
-                      
+         
         } catch (IOException ex) {
             System.out.println("Mensaje Incorrecto");
         }        
