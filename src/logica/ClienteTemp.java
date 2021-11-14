@@ -6,15 +6,21 @@ public class ClienteTemp {
     private int cant_semaforos;
     private int luz_red_broken;
     private int luz_green_broken;
+    private int luz_yellow_broken;
     private int client_id;
     private int group_id;
 
-    public ClienteTemp(int cant_semaforos, int luz_red_broken, int luz_green_broken, int client_id, int group_id) {
+    public ClienteTemp(int cant_semaforos, int luz_red_broken, int luz_green_broken, int luz_yellow_broken, int client_id, int group_id) {
         this.cant_semaforos = cant_semaforos;
         this.luz_red_broken = luz_red_broken;
         this.luz_green_broken = luz_green_broken;
+        this.luz_yellow_broken = luz_yellow_broken;
         this.client_id = client_id;
         this.group_id = group_id;
+    }
+
+    public int getLuz_yellow_broken() {
+        return luz_yellow_broken;
     }
 
     public int getCant_semaforos() {
@@ -39,6 +45,10 @@ public class ClienteTemp {
 
     public void setLuz_green_broken(int luz_green_broken) {
         this.luz_green_broken = luz_green_broken;
+    }
+    
+    public void setLuz_yellow_broken(int luz_yellow_broken) {
+        this.luz_yellow_broken = luz_yellow_broken;
     }
 
     public int getClient_id() {

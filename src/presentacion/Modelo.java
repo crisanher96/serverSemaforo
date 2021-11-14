@@ -2,8 +2,10 @@
 package presentacion;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import logica.Cliente;
 import logica.Conexion;
 import logica.LogicaPrincipal;
 import logica.Hilo;
@@ -13,7 +15,7 @@ public class Modelo {
     DefaultComboBoxModel<String> listaCombo = new DefaultComboBoxModel<>();
     private Vista ventanaPrincipal;
     private LogicaPrincipal sistema;
-    
+    //private ArrayList<Cliente> listClientes = new ArrayList<Cliente>();
     private Conexion conexion;
     
     // Conexion a logica

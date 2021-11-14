@@ -45,7 +45,7 @@ public class Hilo extends Thread{
     @Override
     public void run() {
         String mensaje = "Hola "+ clienteNo + "!";
-        getCliente().setId(clienteNo);
+        
         
         try {
             
@@ -74,6 +74,19 @@ public class Hilo extends Thread{
                                 ClienteTemp[] clientesTemp = gsonF.fromJson(json.getInfo(),ClienteTemp[].class);
                                 System.out.println("-------------------------------------------");
                                 System.out.println(clientesTemp[0].getCant_semaforos());
+                                
+                                
+                                getCliente().setId(clientesTemp[0].getClient_id());
+                                getCliente().setCantSemaforos1(clientesTemp[0].getCant_semaforos());
+                                getCliente().setCantSemaforos2(clientesTemp[1].getCant_semaforos());
+                                getCliente().setCantRojo1(clientesTemp[0].getLuz_red_broken());
+                                getCliente().setCantRojo2(clientesTemp[1].getLuz_red_broken());
+                                getCliente().setCantAmarillo1(clientesTemp[0].getLuz_yellow_broken());
+                                getCliente().setCantAmarillo2(clientesTemp[1].getLuz_yellow_broken());
+                                getCliente().setCantVerde1(clientesTemp[0].getLuz_green_broken());
+                                getCliente().setCantVerde2(clientesTemp[1].getLuz_green_broken());
+                                
+                                
                             break;
                             default: 
                                 System.out.println("Opcion No Valida");
