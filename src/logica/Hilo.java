@@ -111,7 +111,8 @@ public class Hilo extends Thread{
 
                                 mensaje = gson.toJson(respuestaCliente);
                                 datosSalida = new DataOutputStream(host.getOutputStream());
-                                datosSalida.write(("{  \"Data\" : " +mensaje+"}" +"\n").getBytes());
+                                //datosSalida.write(("{  \"Data\" : " +mensaje+"}" +"\n").getBytes());
+                                datosSalida.write((mensaje+"\n").getBytes());
                             break;
                             default: 
                                 System.out.println("Opcion No Valida");
