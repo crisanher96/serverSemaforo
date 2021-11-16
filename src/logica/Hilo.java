@@ -9,10 +9,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+
 
 
 public class Hilo extends Thread{
@@ -51,27 +55,33 @@ public class Hilo extends Thread{
         try {
             
             //SE LEE LA ENTRADA
-            datosEntrada = new BufferedReader(new InputStreamReader(host.getInputStream()));
-            while((mensajeRecibido = datosEntrada.readLine()) != null && salir == 0 ) //Mientras haya mensajes desde el cliente
+            datosEntrada = new BufferedReader(new InputStreamReader(host.getInputStream() ));
+            
+            while( (mensajeRecibido = datosEntrada.readLine()) != null && salir == 0 ) ////Mientras haya mensajes desde el cliente
             {
+//               Scanner s = new Scanner(host.getInputStream()).useDelimiter("\\A");
+//               String result = s.hasNext() ? s.next() : "";
+//            
                 System.out.println("----------- MENSAJE RECIBIDO --------------");  
                 System.out.println(mensajeRecibido);  
                 System.out.println("-------------------------------------------");  
                 try {
                         Gson gson = new Gson();
                         Json json = gson.fromJson(mensajeRecibido, Json.class);
-                        
-                        switch (json.getPeticion()) {
+                        String opcion = "";
+                        if(json.getPeticion()!= null) opcion = json.getPeticion();
+                            
+                        switch (opcion) {
                             case "connect": 
                                 mensaje = "Cliente Conectado";
                                 datosSalida = new DataOutputStream(host.getOutputStream());
-                                datosSalida.writeUTF(mensaje);
+                                datosSalida.write((mensaje +"\n").getBytes());
                             break;
                             case "disconnect":  
                                 System.out.println("Cliente Desconectado");
                                 mensaje = "Cliente Desconectado";
                                 datosSalida = new DataOutputStream(host.getOutputStream());
-                                datosSalida.writeUTF(mensaje);
+                                datosSalida.write((mensaje +"\n").getBytes());
                                 salir=1;
                                 datosSalida.close();
                                 datosEntrada.close();
@@ -101,17 +111,20 @@ public class Hilo extends Thread{
 
                                 mensaje = gson.toJson(respuestaCliente);
                                 datosSalida = new DataOutputStream(host.getOutputStream());
-                                datosSalida.writeUTF(mensaje);
+                                datosSalida.write(("{  \"Data\" : " +mensaje+"}" +"\n").getBytes());
                             break;
                             default: 
                                 System.out.println("Opcion No Valida");
                                 mensaje = "Opcion No Valida";
                                 datosSalida = new DataOutputStream(host.getOutputStream());
-                                datosSalida.write(mensaje.getBytes());
+                                datosSalida.write((mensaje +"\n").getBytes());
                             break;
                         }
                     } catch(JsonSyntaxException e){
                         System.out.println("Json Con Estructura Erronea");
+                        mensaje = "Json Con Estructura Erronea";
+                        datosSalida = new DataOutputStream(host.getOutputStream());
+                        datosSalida.write((mensaje +"\n").getBytes());
                     }
                     
                    

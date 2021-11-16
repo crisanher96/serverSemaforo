@@ -68,20 +68,20 @@
                           <Component id="checkRG1" min="-2" max="-2" attributes="0"/>
                           <Component id="checkGG1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
                       <Component id="cantG1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                       <Component id="jLabel38" min="-2" pref="162" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="checkGG2" min="-2" max="-2" attributes="0"/>
                           <Component id="checkRG2" min="-2" max="-2" attributes="0"/>
-                          <Component id="checkYG2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel43" min="-2" pref="149" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="cantG2" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="checkYG2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="checkGG2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
@@ -181,10 +181,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="checkRG2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="checkGG2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="checkYG2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="checkGG2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel43" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                           <Component id="cantG2" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
