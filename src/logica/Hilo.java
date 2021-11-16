@@ -54,7 +54,10 @@ public class Hilo extends Thread{
             datosEntrada = new BufferedReader(new InputStreamReader(host.getInputStream()));
             while((mensajeRecibido = datosEntrada.readLine()) != null && salir == 0 ) //Mientras haya mensajes desde el cliente
             {
-                    try {
+                System.out.println("----------- MENSAJE RECIBIDO --------------");  
+                System.out.println(mensajeRecibido);  
+                System.out.println("-------------------------------------------");  
+                try {
                         Gson gson = new Gson();
                         Json json = gson.fromJson(mensajeRecibido, Json.class);
                         
@@ -62,13 +65,13 @@ public class Hilo extends Thread{
                             case "connect": 
                                 mensaje = "Cliente Conectado";
                                 datosSalida = new DataOutputStream(host.getOutputStream());
-                                datosSalida.write(mensaje.getBytes());
+                                datosSalida.writeUTF(mensaje);
                             break;
                             case "disconnect":  
                                 System.out.println("Cliente Desconectado");
                                 mensaje = "Cliente Desconectado";
                                 datosSalida = new DataOutputStream(host.getOutputStream());
-                                datosSalida.write(mensaje.getBytes());
+                                datosSalida.writeUTF(mensaje);
                                 salir=1;
                                 datosSalida.close();
                                 datosEntrada.close();
@@ -98,7 +101,7 @@ public class Hilo extends Thread{
 
                                 mensaje = gson.toJson(respuestaCliente);
                                 datosSalida = new DataOutputStream(host.getOutputStream());
-                                datosSalida.write(mensaje.getBytes());
+                                datosSalida.writeUTF(mensaje);
                             break;
                             default: 
                                 System.out.println("Opcion No Valida");
