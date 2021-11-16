@@ -105,7 +105,7 @@ public class Hilo extends Thread{
                                 
                                 ResponseClient[] respuestaCliente = {
                                 new ResponseClient(1, getCliente().isEstRojo1(), getCliente().isEstAmarillo1(), getCliente().isEstVerde1()),
-                                new ResponseClient(2, getCliente().isEstRojo1(), getCliente().isEstAmarillo2(), getCliente().isEstVerde2())
+                                new ResponseClient(2, getCliente().isEstRojo2(), getCliente().isEstAmarillo2(), getCliente().isEstVerde2())
                             };
                                  
 

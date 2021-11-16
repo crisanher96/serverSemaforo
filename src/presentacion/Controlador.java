@@ -53,7 +53,7 @@ public class Controlador implements MouseListener,ActionListener, ComponentListe
          if(e.getSource() instanceof JButton){
             JButton boton = (JButton) e.getSource();            
 
-            if (boton == ventanaPrincipal.getButtonLoad()) {
+            if (boton == ventanaPrincipal.getButtonLoad() || boton == ventanaPrincipal.getButtonUpdate()) {
                 getModelo().ActualizarVentana(ventanaPrincipal.getListClients().getSelectedItem());
             } 
         }

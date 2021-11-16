@@ -70,9 +70,9 @@ public class Modelo {
                 
                 
                 hilo.getCliente().setEstAmarillo1(getVentanaPrincipal().getCheckYG1().isSelected());
-                hilo.getCliente().setEstAmarillo2(getVentanaPrincipal().getCheckYG1().isSelected());
+                hilo.getCliente().setEstAmarillo2(getVentanaPrincipal().getCheckYG2().isSelected());
                 hilo.getCliente().setEstRojo1(getVentanaPrincipal().getCheckRG1().isSelected());
-                hilo.getCliente().setEstRojo2(getVentanaPrincipal().getCheckRG1().isSelected());
+                hilo.getCliente().setEstRojo2(getVentanaPrincipal().getCheckRG2().isSelected());
                 hilo.getCliente().setEstVerde1(getVentanaPrincipal().getCheckGG1().isSelected());
                 hilo.getCliente().setEstVerde2(getVentanaPrincipal().getCheckGG2().isSelected());
               }

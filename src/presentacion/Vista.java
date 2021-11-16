@@ -41,6 +41,7 @@ public class Vista extends javax.swing.JFrame {
     
     private void capturaEventos() {
         buttonLoad.addActionListener(getControl());
+        buttonUpdate.addActionListener(getControl());
         listClients.addFocusListener(getControl());
     }
 
@@ -91,6 +92,7 @@ public class Vista extends javax.swing.JFrame {
         jLabel49 = new javax.swing.JLabel();
         listClients = new javax.swing.JComboBox<>();
         buttonLoad = new javax.swing.JButton();
+        buttonUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 560));
@@ -189,6 +191,8 @@ public class Vista extends javax.swing.JFrame {
 
         buttonLoad.setText("Cargar Informacion");
 
+        buttonUpdate.setText("Actualizar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -259,7 +263,9 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(listClients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonLoad)
-                .addGap(20, 531, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonUpdate)
+                .addGap(29, 29, 29))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(49, 49, 49)
@@ -273,7 +279,8 @@ public class Vista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(listClients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
                 .addGap(26, 26, 26)
@@ -372,6 +379,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLabel brokenYG1;
     private javax.swing.JLabel brokenYG2;
     private javax.swing.JButton buttonLoad;
+    private javax.swing.JButton buttonUpdate;
     private javax.swing.JLabel cantG1;
     private javax.swing.JLabel cantG2;
     private javax.swing.JRadioButton checkGG1;
@@ -403,6 +411,10 @@ public class Vista extends javax.swing.JFrame {
 
     public JButton getButtonLoad() {
         return buttonLoad;
+    }
+    
+    public JButton getButtonUpdate() {
+        return buttonUpdate;
     }
 
     public JLabel getBrokenGG1() {
