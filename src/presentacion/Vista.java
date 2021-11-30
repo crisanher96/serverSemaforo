@@ -43,6 +43,13 @@ public class Vista extends javax.swing.JFrame {
         buttonLoad.addActionListener(getControl());
         buttonUpdate.addActionListener(getControl());
         listClients.addFocusListener(getControl());
+        
+        checkGG1.addActionListener(getControl());
+        checkGG2.addActionListener(getControl());
+        checkRG1.addActionListener(getControl());
+        checkRG2.addActionListener(getControl());
+        checkYG1.addActionListener(getControl());
+        checkYG2.addActionListener(getControl());
     }
 
     /**
@@ -497,5 +504,34 @@ public class Vista extends javax.swing.JFrame {
         return checkYG2;
     }
     
+    public JRadioButton setCheckGG1() {
+        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/semaforo_green.png")));
+        return checkGG1;
+    }
+
+    public JRadioButton setCheckGG2() {
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/semaforo_green.png")));
+        return checkGG2;
+    }
+
+    public JRadioButton setCheckRG1() {
+        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/semaforo_red.png")));
+        return checkRG1;
+    }
+
+    public JRadioButton setCheckRG2() {
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/semaforo_red.png")));
+        return checkRG2;
+    }
+
+    public JRadioButton setCheckYG1() {
+        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/semaforo_yellow.png")));
+        return checkYG1;
+    }
+
+    public JRadioButton setCheckYG2() {
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/semaforo_yellow.png")));
+        return checkYG2;
+    }
     
 }

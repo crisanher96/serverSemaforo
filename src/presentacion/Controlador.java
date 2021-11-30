@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JRadioButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import presentacion.Modelo;
@@ -50,7 +51,6 @@ public class Controlador implements MouseListener,ActionListener, ComponentListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
          if(e.getSource() instanceof JButton){
             JButton boton = (JButton) e.getSource();            
 
@@ -61,6 +61,31 @@ public class Controlador implements MouseListener,ActionListener, ComponentListe
                 
             } 
         }
+         
+        if(e.getSource() instanceof JRadioButton){
+            JRadioButton Rboton = (JRadioButton) e.getSource();
+            
+            if (Rboton == ventanaPrincipal.getCheckGG1()) {
+                ventanaPrincipal.setCheckGG1();
+            }
+            if (Rboton == ventanaPrincipal.getCheckGG2()) {
+                ventanaPrincipal.setCheckGG2();
+            }
+            if (Rboton == ventanaPrincipal.getCheckRG1()) {
+                ventanaPrincipal.setCheckRG1();
+            }
+            if (Rboton == ventanaPrincipal.getCheckRG2()) {
+                ventanaPrincipal.setCheckRG2();
+            }
+            if (Rboton == ventanaPrincipal.getCheckYG1()) {
+                ventanaPrincipal.setCheckYG1();
+            }
+            if (Rboton == ventanaPrincipal.getCheckYG2()) {
+                ventanaPrincipal.setCheckYG2();
+            }
+            
+        }
+    
     }
 
     @Override
