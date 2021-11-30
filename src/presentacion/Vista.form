@@ -128,6 +128,10 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="buttonLoad" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel50" min="-2" pref="68" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="idServer" min="-2" pref="198" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="buttonUpdate" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
           </Group>
@@ -149,6 +153,8 @@
                   <Component id="listClients" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonLoad" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                   <Component id="buttonUpdate" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="idServer" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel50" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator5" pref="1" max="32767" attributes="0"/>
@@ -268,6 +274,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkRG1ActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JRadioButton" name="checkYG1">
       <Properties>
@@ -276,6 +285,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Luz Amarilla"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JRadioButton" name="checkGG1">
       <Properties>
@@ -284,6 +296,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Luz Verde"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel39">
       <Properties>
@@ -352,6 +367,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Luz Roja"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel45">
       <Properties>
@@ -454,6 +472,18 @@
     <Component class="javax.swing.JButton" name="buttonUpdate">
       <Properties>
         <Property name="text" type="java.lang.String" value="Actualizar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="idServer">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idServerActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel50">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="text" type="java.lang.String" value="Id Server:"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
   </SubComponents>

@@ -16,7 +16,15 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-
+import java.io.BufferedReader;
+import java.net.URI;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import presentacion.Modelo;
+import presentacion.Vista;
 
 
 public class Hilo extends Thread{
@@ -28,7 +36,6 @@ public class Hilo extends Thread{
     private int clienteNo, salir=0;
     protected String mensajeRecibido;
     private Cliente cliente;
-    
     
     public Cliente getCliente() {
         if(cliente == null){
@@ -53,6 +60,8 @@ public class Hilo extends Thread{
         
         
         try {
+            while (true){
+            
             
             //SE LEE LA ENTRADA
             datosEntrada = new BufferedReader(new InputStreamReader(host.getInputStream() ));
@@ -61,10 +70,24 @@ public class Hilo extends Thread{
             {
 //               Scanner s = new Scanner(host.getInputStream()).useDelimiter("\\A");
 //               String result = s.hasNext() ? s.next() : "";
-//            
-                System.out.println("----------- MENSAJE RECIBIDO --------------");  
+//              
+                System.out.println("----------- MENSAJE RECIBIDO DEL CLIENTE --------------");  
                 System.out.println(mensajeRecibido);  
-                System.out.println("-------------------------------------------");  
+                System.out.println("-------------------------------------------");
+                System.out.println("----------- HACIENDO PETICIÓN AL SERVER --------------"); 
+                    String bodyTemp = "{\"title\": \"foo\",\"body\": \"bar\",\"userId\": 1}";
+                    String url = "https://jsonplaceholder.typicode.com/posts";
+                    String respuesta = "";
+                    try {
+                            respuesta = peticionHttpPost(url, bodyTemp);
+                            System.out.println("La respuesta es:\n" + respuesta);
+                            getCliente().setEstRojo1(true);
+                            getCliente().setEstAmarillo2(true);
+                            
+                    } catch (Exception e) {
+                            // Manejar excepción
+                            e.printStackTrace();
+                    } 
                 try {
                         Gson gson = new Gson();
                         Json json = gson.fromJson(mensajeRecibido, Json.class);
@@ -129,14 +152,66 @@ public class Hilo extends Thread{
                     }
                     
                    
-            }
+            }}
         } catch (IOException ex) {
             System.out.println("Mensaje Incorrecto");
         }        
         
     }
     
+    public static String peticionHttpGet(String urlParaVisitar) throws Exception {
+		// Esto es lo que vamos a devolver
+		StringBuilder resultado = new StringBuilder();
+		// Crear un objeto de tipo URL
+		URL url = new URL(urlParaVisitar);
+
+		// Abrir la conexión e indicar que será de tipo GET
+		HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+		conexion.setRequestMethod("GET");
+		// Búferes para leer
+		BufferedReader rd = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
+		String linea;
+		// Mientras el BufferedReader se pueda leer, agregar contenido a resultado
+		while ((linea = rd.readLine()) != null) {
+			resultado.append(linea);
+		}
+		// Cerrar el BufferedReader
+		rd.close();
+		// Regresar resultado, pero como cadena, no como StringBuilder
+		return resultado.toString();
+    }
     
+    public static String peticionHttpPost(String urlParaVisitar, String body) throws Exception {
+		// Esto es lo que vamos a devolver
+		StringBuilder resultado = new StringBuilder();
+		// Crear un objeto de tipo URL
+		URL url = new URL(urlParaVisitar);
+
+		// Abrir la conexión e indicar que será de tipo GET
+		HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+		conexion.setRequestMethod("POST");
+                conexion.setRequestProperty("Content-Type", "application/json; utf-8");
+                conexion.setRequestProperty("Accept", "application/json");
+                conexion.setDoOutput(true);
+                // Búferes para Escribir
+                try(OutputStream os = conexion.getOutputStream()) {
+                    byte[] input = body.getBytes("utf-8");
+                    os.write(input, 0, input.length);			
+                }
+
+		// Búferes para leer
+		BufferedReader rd = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
+		String linea;
+		// Mientras el BufferedReader se pueda leer, agregar contenido a resultado
+		while ((linea = rd.readLine()) != null) {
+			resultado.append(linea);
+		}
+		// Cerrar el BufferedReader
+		rd.close();
+		// Regresar resultado, pero como cadena, no como StringBuilder
+		return resultado.toString();
+    }
     
+
     
 }

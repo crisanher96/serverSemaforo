@@ -68,6 +68,12 @@ public class Modelo {
                 getVentanaPrincipal().getCantG1().setText(String.valueOf(hilo.getCliente().getCantSemaforos1()));
                 getVentanaPrincipal().getCantG2().setText(String.valueOf(hilo.getCliente().getCantSemaforos2()));
                 
+                getVentanaPrincipal().getCheckRG1().setSelected(hilo.getCliente().isEstRojo1());
+                getVentanaPrincipal().getCheckYG1().setSelected(hilo.getCliente().isEstAmarillo1());
+                getVentanaPrincipal().getCheckGG1().setSelected(hilo.getCliente().isEstVerde1());
+                getVentanaPrincipal().getCheckRG2().setSelected(hilo.getCliente().isEstRojo2());
+                getVentanaPrincipal().getCheckYG2().setSelected(hilo.getCliente().isEstAmarillo2());
+                getVentanaPrincipal().getCheckGG2().setSelected(hilo.getCliente().isEstVerde2());
                 
                 hilo.getCliente().setEstAmarillo1(getVentanaPrincipal().getCheckYG1().isSelected());
                 hilo.getCliente().setEstAmarillo2(getVentanaPrincipal().getCheckYG2().isSelected());

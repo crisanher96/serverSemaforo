@@ -93,6 +93,8 @@ public class Vista extends javax.swing.JFrame {
         listClients = new javax.swing.JComboBox<>();
         buttonLoad = new javax.swing.JButton();
         buttonUpdate = new javax.swing.JButton();
+        idServer = new javax.swing.JTextField();
+        jLabel50 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 560));
@@ -193,6 +195,16 @@ public class Vista extends javax.swing.JFrame {
 
         buttonUpdate.setText("Actualizar");
 
+        idServer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idServerActionPerformed(evt);
+            }
+        });
+
+        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel50.setText("Id Server:");
+        jLabel50.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -264,6 +276,10 @@ public class Vista extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(buttonLoad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(idServer, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonUpdate)
                 .addGap(29, 29, 29))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,7 +296,9 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(listClients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
                 .addGap(26, 26, 26)
@@ -356,6 +374,10 @@ public class Vista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_checkRG1ActionPerformed
 
+    private void idServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idServerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idServerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,12 +404,13 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton buttonUpdate;
     private javax.swing.JLabel cantG1;
     private javax.swing.JLabel cantG2;
-    private javax.swing.JRadioButton checkGG1;
+    public javax.swing.JRadioButton checkGG1;
     private javax.swing.JRadioButton checkGG2;
-    private javax.swing.JRadioButton checkRG1;
-    private javax.swing.JRadioButton checkRG2;
-    private javax.swing.JRadioButton checkYG1;
+    public javax.swing.JRadioButton checkRG1;
+    public javax.swing.JRadioButton checkRG2;
+    public javax.swing.JRadioButton checkYG1;
     private javax.swing.JRadioButton checkYG2;
+    private javax.swing.JTextField idServer;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
@@ -401,6 +424,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JComboBox<String> listClients;
     // End of variables declaration//GEN-END:variables

@@ -50,11 +50,15 @@ public class Controlador implements MouseListener,ActionListener, ComponentListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
          if(e.getSource() instanceof JButton){
             JButton boton = (JButton) e.getSource();            
 
             if (boton == ventanaPrincipal.getButtonLoad() || boton == ventanaPrincipal.getButtonUpdate()) {
-                getModelo().ActualizarVentana(ventanaPrincipal.getListClients().getSelectedItem());
+                
+                    getModelo().ActualizarVentana(ventanaPrincipal.getListClients().getSelectedItem());
+                
+                
             } 
         }
     }
