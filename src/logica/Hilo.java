@@ -1,7 +1,7 @@
 
 package logica;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
 import com.google.gson.JsonSyntaxException;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -25,6 +25,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import presentacion.Modelo;
 import presentacion.Vista;
+import org.json.*;
 
 
 public class Hilo extends Thread{
@@ -33,8 +34,10 @@ public class Hilo extends Thread{
     private DataOutputStream datosSalida;
     private BufferedReader datosEntrada;
     public static int NUM_CLIENTES = 0;
-    private int clienteNo, salir=0;
+    private int clienteNo, salir=0, serverId;
     protected String mensajeRecibido;
+    protected String serverPostUrl;
+    protected String serverGetUrl;
     private Cliente cliente;
     
     public Cliente getCliente() {
@@ -52,6 +55,9 @@ public class Hilo extends Thread{
         host = c;
         NUM_CLIENTES++;
         clienteNo = NUM_CLIENTES;
+        serverPostUrl = "http://localhost:8000/semaforo/create_request";
+        serverGetUrl = "http://localhost:8000/semaforoAct/create_request";
+        serverId = 100;
     }
 
     @Override
@@ -74,26 +80,32 @@ public class Hilo extends Thread{
                 System.out.println("----------- MENSAJE RECIBIDO DEL CLIENTE --------------");  
                 System.out.println(mensajeRecibido);  
                 System.out.println("-------------------------------------------");
-                System.out.println("----------- HACIENDO PETICIÓN AL SERVER --------------"); 
-                    String bodyTemp = "{\"title\": \"foo\",\"body\": \"bar\",\"userId\": 1}";
-                    String url = "https://jsonplaceholder.typicode.com/posts";
-                    String respuesta = "";
-                    try {
-                            respuesta = peticionHttpPost(url, bodyTemp);
-                            System.out.println("La respuesta es:\n" + respuesta);
-                            getCliente().setEstRojo1(true);
-                            getCliente().setEstAmarillo2(true);
-                            
-                    } catch (Exception e) {
-                            // Manejar excepción
-                            e.printStackTrace();
-                    } 
                 try {
                         Gson gson = new Gson();
                         Json json = gson.fromJson(mensajeRecibido, Json.class);
                         String opcion = "";
                         if(json.getPeticion()!= null) opcion = json.getPeticion();
-                            
+                            System.out.println("----------- HACIENDO PETICIÓN AL SERVER --------------"); 
+                            try {
+                                // add server id
+                                Gson gsonT = new Gson();
+                                ClienteTemp[] clientesTemp = gsonT.fromJson(json.getInfo(),ClienteTemp[].class);
+                                clientesTemp[0].setServer_id(serverId);
+                                clientesTemp[1].setServer_id(serverId);
+                                String bodyTemp = gsonT.toJson(clientesTemp);
+                                JsonObject body = new JsonObject();
+                                JsonParser jsonParser = new JsonParser();
+                                JsonArray info_array = jsonParser.parse(bodyTemp).getAsJsonArray();
+                                body.add("info", info_array);
+                                // send to server 
+                                String respuesta = peticionHttpPost(serverPostUrl, body.toString());
+                                System.out.println("La respuesta es:\n" + respuesta);
+                                //getCliente().setEstRojo1(true);
+                                //getCliente().setEstAmarillo2(true);
+                            } catch (Exception e) {
+                                // Manejar excepción
+                                e.printStackTrace();
+                            }                            
                         switch (opcion) {
                             case "connect": 
                                 mensaje = "Cliente Conectado";
