@@ -50,6 +50,8 @@ public class Vista extends javax.swing.JFrame {
         checkRG2.addActionListener(getControl());
         checkYG1.addActionListener(getControl());
         checkYG2.addActionListener(getControl());
+        idServer.setVisible(false);
+        jLabel50.setVisible(false);
     }
 
     /**
